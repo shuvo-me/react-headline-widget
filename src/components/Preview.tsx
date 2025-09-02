@@ -5,7 +5,7 @@ import { useAppStore } from "../store/AppStoreProvider";
 import cn from "../utils/clsx";
 
 const Preview = () => {
-  const { content } = useAppStore();
+  const { content, setContent } = useAppStore();
   const { nav, hero } = content;
 
   const generateFontColorClass = (hexString: string) => {
@@ -55,7 +55,22 @@ const Preview = () => {
       </nav>
       <div className=" flex flex-col md:flex-row min-h-[675px] mt-16 md:mt-0 z-10">
         <div className="flex-1 md:flex-1/2 flex flex-col justify-center items-center md:items-baseline  [&~*]:text-left pl-10 md:pl-40">
-          <h1 className=" font-bold text-black text-4xl max-w-sm line-clamp-2">
+          <h1
+            contentEditable
+            onBlur={(e) =>
+              setContent((prevContent) => ({
+                ...prevContent,
+                hero: {
+                  ...prevContent.hero,
+                  title: {
+                    ...prevContent.hero.title,
+                    text: e.target.innerText,
+                  },
+                },
+              }))
+            }
+            className=" font-bold text-black text-4xl max-w-sm line-clamp-2"
+          >
             {hero?.title?.text}
           </h1>
           <p className=" max-w-[511px] text-sm font-semibold mt-10 text-center md:text-left">
