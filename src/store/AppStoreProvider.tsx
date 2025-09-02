@@ -1,0 +1,56 @@
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type Dispatch,
+  type FC,
+  type PropsWithChildren,
+  type SetStateAction,
+} from "react";
+import data from "@/utils/content.ts";
+
+type AppStateType = {
+  content: typeof data;
+  setContent: Dispatch<SetStateAction<data>>;
+};
+
+const AppContext = createContext<AppStateType | null>(null);
+
+const AppStoreProvider: FC<PropsWithChildren> = ({ children }) => {
+  const contentJsonFromLocalStorage = localStorage.getItem("contentData");
+  const parsedJSON = JSON.parse(contentJsonFromLocalStorage as string);
+
+  console.log({ parsedJSON });
+  const [content, setContent] = useState(() => {
+    if (parsedJSON) return { ...parsedJSON };
+    else return { ...data };
+  });
+
+  useEffect(() => {
+    console.log({ content });
+    localStorage.setItem("contentData", JSON.stringify(content));
+  }, [content]);
+
+  return (
+    <AppContext.Provider
+      value={{
+        content,
+        setContent,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
+};
+
+export const useAppStore = () => {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("AppStore must be defined under AppStoreProvider");
+  }
+
+  return context;
+};
+
+export default AppStoreProvider;
