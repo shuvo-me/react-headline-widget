@@ -16,6 +16,10 @@ const UpdateStyle = () => {
     ...nav.action,
   }));
 
+  const [heroStyles, setHeroStyles] = useState(() => ({
+    ...content.hero,
+  }));
+
   const handleUpdateNavStyle = () => {
     setContent((prevContent) => ({
       ...prevContent,
@@ -34,7 +38,15 @@ const UpdateStyle = () => {
     }));
   };
 
-  console.log({ navStyles });
+  const handleUpdateHeroStyles = () => {
+    setContent((prevContent) => ({
+      ...prevContent,
+      hero: {
+        ...heroStyles,
+      },
+    }));
+  };
+
   return (
     <div className="space-y-10">
       <section className="space-y-4">
@@ -172,13 +184,24 @@ const UpdateStyle = () => {
             onChange={() => {}}
           />
           <Input
+            value={heroStyles.bgGradient.style.background}
             type="text"
             id="hero-bg-gradient-color"
-            label="Change hero bg gradient color"
-            onChange={() => {}}
+            label="Copy and paste any gradient value text"
+            onChange={(e) =>
+              setHeroStyles((prevStyles) => ({
+                ...prevStyles,
+                bgGradient: {
+                  style: {
+                    background: e.target.value,
+                  },
+                },
+              }))
+            }
           />
         </div>
         <button
+          onClick={handleUpdateHeroStyles}
           type="button"
           className="bg-blue-500 text-white py-2 px-4 rounded text-center cursor-pointer"
         >

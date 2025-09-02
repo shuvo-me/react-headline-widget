@@ -8,13 +8,14 @@ const Preview = () => {
   const { content, setContent } = useAppStore();
   const { nav, hero } = content;
 
-  const generateFontColorClass = (hexString: string) => {
-    return `text-[${hexString}]`;
-  };
-
   return (
     <div className="bg-white flex flex-col relative overflow-hidden">
-      <div className="h-[100rem] w-[54rem] md:w-[45rem]  lg:w-[64rem] bg-purple-400 absolute inset-0 -rotate-45 translate-x-[-5rem] translate-y-[-11rem]"></div>
+      <div
+        className="h-[100rem] w-[54rem] md:w-[45rem]  lg:w-[64rem]  absolute inset-0 -rotate-45 translate-x-[-5rem] translate-y-[-11rem]"
+        style={{
+          ...content.hero.bgGradient.style,
+        }}
+      />
       <nav className="flex items-center justify-between px-1.5 py-2.5 z-10">
         <div>
           <img src={siteLogo} alt="site logo" />
@@ -23,6 +24,7 @@ const Preview = () => {
           <ul className="flex items-center py-2 px-2.5 text-sm [&>li]:mx-4">
             {nav?.links.map((link) => (
               <li
+                key={link.href}
                 className={cn(
                   nav.linkStyle.classes.fontFamily,
                   nav.linkStyle.classes.fontSize,
