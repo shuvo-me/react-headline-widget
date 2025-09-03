@@ -26,7 +26,7 @@ const UpdateStyle = () => {
       nav: {
         ...prevContent.nav,
         linkStyle: {
-          ...prevContent.linkStyle,
+          ...prevContent.nav.linkStyle,
           classes: {
             ...navStyles.classes,
           },
@@ -532,6 +532,7 @@ const UpdateStyle = () => {
                   setHeroStyles((prevStyles) => ({
                     ...prevStyles,
                     bgGradient: {
+                      ...prevStyles.bgGradient,
                       style: {
                         background: e.target.value,
                       },

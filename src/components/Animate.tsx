@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { type FC, type PropsWithChildren } from "react";
 
 type AnimateProps = {
-  type?: "fade-in" | "zoom-in";
+  type?: string;
   delay?: number;
 };
 

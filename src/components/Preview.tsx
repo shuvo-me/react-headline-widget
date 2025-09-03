@@ -1,8 +1,8 @@
 import siteLogo from "@/assets/site-logo.svg";
 import heroImage from "@/assets/hero-image.png";
 import BarIcon from "./BarIcon";
-import { useAppStore } from "../store/AppStoreProvider";
-import cn from "../utils/clsx";
+import { useAppStore } from "@/store/AppStoreProvider";
+import cn from "@/utils/clsx";
 import Animate from "./Animate";
 
 const Preview = () => {

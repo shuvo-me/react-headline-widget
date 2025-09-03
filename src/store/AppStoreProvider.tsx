@@ -10,9 +10,11 @@ import {
 } from "react";
 import data from "@/utils/content.ts";
 
+export type ContentType = typeof data;
+
 type AppStateType = {
   content: typeof data;
-  setContent: Dispatch<SetStateAction<data>>;
+  setContent: Dispatch<SetStateAction<typeof data>>;
   downloadStyleSettings: () => void;
 };
 
