@@ -13,6 +13,7 @@ import data from "@/utils/content.ts";
 type AppStateType = {
   content: typeof data;
   setContent: Dispatch<SetStateAction<data>>;
+  downloadStyleSettings: () => void;
 };
 
 const AppContext = createContext<AppStateType | null>(null);
@@ -26,6 +27,21 @@ const AppStoreProvider: FC<PropsWithChildren> = ({ children }) => {
     else return { ...data };
   });
 
+  const downloadStyleSettings = () => {
+    const contentJSONString = JSON.stringify(content);
+    const contentBlob = new Blob([contentJSONString], {
+      type: "application/json",
+    });
+    const downloadUrl = URL.createObjectURL(contentBlob);
+    const aTag = document.createElement("a") as HTMLAnchorElement;
+    aTag.href = downloadUrl;
+    aTag.download = "StyleSettings";
+    document.body.appendChild(aTag);
+    aTag.click();
+    document.body.removeChild(aTag);
+    URL.revokeObjectURL(downloadUrl);
+  };
+
   useEffect(() => {
     localStorage.setItem("contentData", JSON.stringify(content));
   }, [content]);
@@ -35,6 +51,7 @@ const AppStoreProvider: FC<PropsWithChildren> = ({ children }) => {
       value={{
         content,
         setContent,
+        downloadStyleSettings,
       }}
     >
       {children}
