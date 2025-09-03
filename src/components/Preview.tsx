@@ -71,17 +71,47 @@ const Preview = () => {
                 },
               }))
             }
-            className=" font-bold text-black text-4xl max-w-sm line-clamp-2"
+            className={cn(
+              "max-w-sm line-clamp-2",
+              hero.title.classes.fontFamily,
+              hero.title.classes.fontSize,
+              hero.title.classes.fontWeight,
+              hero.title.animation.class
+            )}
+            style={{
+              color: hero.title.classes.fontColor,
+            }}
           >
             {hero?.title?.text}
           </h1>
-          <p className=" max-w-[511px] text-sm font-semibold mt-10 text-center md:text-left">
-            {hero?.subtitle}
+          <p
+            className={cn(
+              "max-w-[511px]  mt-10 text-center md:text-left",
+              hero.subtitle.classes.fontFamily,
+              hero.subtitle.classes.fontSize,
+              hero.subtitle.classes.fontWeight,
+              hero.subtitle.animation.class
+            )}
+            style={{
+              color: hero.subtitle.classes.fontColor,
+            }}
+          >
+            {hero?.subtitle?.text}
           </p>
           <div className="mt-16">
             <a
               href={hero?.button?.href}
-              className=" min-w-[200px] rounded-full flex items-center justify-center text-white text-sm bg-amber-400 py-4 px-6"
+              className={cn(
+                "min-w-[200px] rounded-full flex items-center justify-center text-white text-sm bg-amber-400 py-4 px-6",
+                hero.button.classes.fontFamily,
+                hero.button.classes.fontSize,
+                hero.button.classes.fontWeight,
+                hero.button.animation.class
+              )}
+              style={{
+                color: hero.button.classes.fontColor,
+                background: hero.button.classes.bgColor,
+              }}
             >
               {hero?.button?.title}
             </a>
