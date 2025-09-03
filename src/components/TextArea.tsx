@@ -4,15 +4,17 @@ type TextAreaProps = {
   label: string;
   id: string;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  value: string;
 };
 
-const TextArea: FC<TextAreaProps> = ({ label, id, onChange }) => {
+const TextArea: FC<TextAreaProps> = ({ label, id, onChange, value }) => {
   return (
     <div className="flex flex-col">
       <label htmlFor={id} className="text-sm">
         {label}
       </label>
       <textarea
+        value={value}
         id={id}
         onChange={onChange}
         className=" outline-0 border border-gray-400 rounded p-2 focus-within:border-blue-500"
