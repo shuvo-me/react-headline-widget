@@ -214,9 +214,20 @@ const UpdateStyle = () => {
               />
 
               <InputAnimation
+                value={heroStyles.title.animation.class}
                 id="header-title-animation"
                 label="Select title animation"
-                onChange={() => {}}
+                onChange={(e) => {
+                  setHeroStyles((prevStyles) => ({
+                    ...prevStyles,
+                    title: {
+                      ...prevStyles.title,
+                      animation: {
+                        class: e.target.value,
+                      },
+                    },
+                  }));
+                }}
               />
             </div>
           </div>
@@ -303,6 +314,23 @@ const UpdateStyle = () => {
                       classes: {
                         ...prevStyles.subtitle.classes,
                         fontColor: e.target.value,
+                      },
+                    },
+                  }));
+                }}
+              />
+
+              <InputAnimation
+                value={heroStyles.subtitle.animation.class}
+                id="header-subtitle-animation"
+                label="Select subtitle animation"
+                onChange={(e) => {
+                  setHeroStyles((prevStyles) => ({
+                    ...prevStyles,
+                    subtitle: {
+                      ...prevStyles.subtitle,
+                      animation: {
+                        class: e.target.value,
                       },
                     },
                   }));
@@ -426,6 +454,22 @@ const UpdateStyle = () => {
                       classes: {
                         ...prevStyles.button.classes,
                         bgColor: e.target.value,
+                      },
+                    },
+                  }));
+                }}
+              />
+              <InputAnimation
+                value={heroStyles.button.animation.class}
+                id="header-button-animation"
+                label="Select button animation"
+                onChange={(e) => {
+                  setHeroStyles((prevStyles) => ({
+                    ...prevStyles,
+                    button: {
+                      ...prevStyles.button,
+                      animation: {
+                        class: e.target.value,
                       },
                     },
                   }));
