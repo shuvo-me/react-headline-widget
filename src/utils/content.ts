@@ -7,9 +7,9 @@ export default {
       text: "New card game",
       classes: {
         fontFamily: "font-roboto",
-        fontSize: "text-4xl",
+        fontSize: "text-5xl",
         fontWeight: "font-bold",
-        fontColor: "#000000",
+        fontColor: "#FFFFFF",
       },
       animation: {
         class: "fade-in",
@@ -19,9 +19,9 @@ export default {
       text: `We present you a new card game — First Hunter. It develops horizons and deep thinking. From the age of 8`,
       classes: {
         fontFamily: "font-roboto",
-        fontSize: "text-4xl",
+        fontSize: "text-2xl",
         fontWeight: "font-bold",
-        fontColor: "#000000",
+        fontColor: "#FFFFFF",
       },
       animation: {
         class: "fade-in",
@@ -36,6 +36,7 @@ export default {
         fontWeight: "font-normal",
         fontColor: "#000000",
         bgColor: "#FFFFFF",
+        hoverEffect: "hover:drop-shadow-lg",
       },
       animation: {
         class: "fade-in",
@@ -92,7 +93,10 @@ export default {
         label: "Download",
         classes: {
           fontSize: "text-sm",
-          fontColor: "text-white",
+        },
+        style: {
+          backgroundColor: "#3751e6",
+          color: "#FFFFFF",
         },
       },
     },

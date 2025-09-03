@@ -6,6 +6,7 @@ import TextArea from "./TextArea";
 import InputAnimation from "./InputAnimtaion";
 import { useState } from "react";
 import { useAppStore } from "../store/AppStoreProvider";
+import InputHoverEffect from "./InputHoverEffect";
 
 const UpdateStyle = () => {
   const { content, setContent } = useAppStore();
@@ -145,13 +146,50 @@ const UpdateStyle = () => {
             value={navStyles.button.label}
             type="text"
             label="Change button Text"
-            id="nav-button"
+            id="nav-button-text"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setNavStyles((prevStyle) => ({
                 ...prevStyle,
                 button: {
                   ...prevStyle.button,
                   label: event.target.value,
+                },
+              }));
+            }}
+          />
+          <Input
+            value={navStyles.button.style.color}
+            type="color"
+            label="Change button Text color"
+            id="nav-button-text-color"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setNavStyles((prevStyle) => ({
+                ...prevStyle,
+                button: {
+                  ...prevStyle.button,
+                  style: {
+                    ...prevStyle.button.style,
+                    color: event.target.value,
+                  },
+                },
+              }));
+            }}
+          />
+
+          <Input
+            value={navStyles.button.style.backgroundColor}
+            type="color"
+            label="Change button background color"
+            id="nav-button-bg-color"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setNavStyles((prevStyle) => ({
+                ...prevStyle,
+                button: {
+                  ...prevStyle.button,
+                  style: {
+                    ...prevStyle.button.style,
+                    backgroundColor: event.target.value,
+                  },
                 },
               }));
             }}
@@ -505,6 +543,24 @@ const UpdateStyle = () => {
                     },
                   }));
                 }}
+              />
+
+              <InputHoverEffect
+                value={heroStyles.button.classes.hoverEffect}
+                label="Add hover effect to hero button"
+                id="hero-button-hover-effect"
+                onChange={(e) =>
+                  setHeroStyles((prevStyles) => ({
+                    ...prevStyles,
+                    button: {
+                      ...prevStyles.button,
+                      classes: {
+                        ...prevStyles.button.classes,
+                        hoverEffect: e.target.value,
+                      },
+                    },
+                  }))
+                }
               />
             </div>
           </div>

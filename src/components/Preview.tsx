@@ -52,10 +52,12 @@ const Preview = () => {
           <button
             type="button"
             className={cn(
-              "cursor-pointer  font-semibold  bg-purple-500 rounded-full py-2.5 px-4 min-w-[100px] flex items-center justify-center",
-              nav.action.button.classes.fontSize,
-              nav.action.button.classes.fontColor
+              "cursor-pointer  font-semibold   rounded-full py-2.5 px-4 min-w-[100px] flex items-center justify-center",
+              nav.action.button.classes.fontSize
             )}
+            style={{
+              ...nav.action.button.style,
+            }}
           >
             {nav.action.button.label}
           </button>
@@ -115,10 +117,11 @@ const Preview = () => {
               <a
                 href={hero?.button?.href}
                 className={cn(
-                  "min-w-[200px] rounded-full flex items-center justify-center text-white text-sm bg-amber-400 py-4 px-6",
+                  "min-w-[200px] transition duration-200 ease-linear rounded-full flex items-center justify-center   py-4 px-6",
                   hero.button.classes.fontFamily,
                   hero.button.classes.fontSize,
                   hero.button.classes.fontWeight,
+                  hero.button.classes.hoverEffect,
                   hero.button.animation.class
                 )}
                 style={{
