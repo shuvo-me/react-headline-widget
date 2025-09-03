@@ -9,6 +9,10 @@ import { useAppStore } from "../store/AppStoreProvider";
 
 const UpdateStyle = () => {
   const { content, setContent } = useAppStore();
+  const [loading, setLoading] = useState(() => ({
+    updatingNav: false,
+    updatingHero: false,
+  }));
   const { nav, hero } = content;
 
   const [navStyles, setNavStyles] = useState(() => ({
@@ -20,35 +24,63 @@ const UpdateStyle = () => {
     ...hero,
   }));
 
-  const handleUpdateNavStyle = () => {
-    setContent((prevContent) => ({
-      ...prevContent,
-      nav: {
-        ...prevContent.nav,
-        linkStyle: {
-          ...prevContent.nav.linkStyle,
-          classes: {
-            ...navStyles.classes,
+  const handleUpdateNavStyle = async () => {
+    setLoading((prevLoading) => ({
+      ...prevLoading,
+      updatingNav: true,
+    }));
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        setContent((prevContent) => ({
+          ...prevContent,
+          nav: {
+            ...prevContent.nav,
+            linkStyle: {
+              ...prevContent.nav.linkStyle,
+              classes: {
+                ...navStyles.classes,
+              },
+            },
+            action: {
+              button: { ...navStyles.button },
+            },
           },
-        },
-        action: {
-          button: { ...navStyles.button },
-        },
-      },
+        }));
+        resolve(true);
+      }, 1000)
+    );
+
+    setLoading((prevLoading) => ({
+      ...prevLoading,
+      updatingNav: false,
     }));
   };
 
-  const handleUpdateHeroStyles = () => {
-    setContent((prevContent) => ({
-      ...prevContent,
-      hero: {
-        ...heroStyles,
-      },
+  const handleUpdateHeroStyles = async () => {
+    setLoading((prevLoading) => ({
+      ...prevLoading,
+      updatingHero: true,
+    }));
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        setContent((prevContent) => ({
+          ...prevContent,
+          hero: {
+            ...heroStyles,
+          },
+        }));
+        resolve(true);
+      }, 1000)
+    );
+
+    setLoading((prevLoading) => ({
+      ...prevLoading,
+      updatingHero: false,
     }));
   };
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-4">
         <h4 className="font-bold">Nav Items</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
@@ -128,10 +160,9 @@ const UpdateStyle = () => {
         <button
           onClick={handleUpdateNavStyle}
           type="button"
-          className="bg-blue-500 text-white py-2 px-4 rounded text-center cursor-pointer"
+          className="bg-blue-500 active:opacity-60 text-white py-2 px-4 rounded text-center cursor-pointer"
         >
-          {" "}
-          Update{" "}
+          {loading.updatingNav ? "Updating..." : "Update"}
         </button>
       </section>
 
@@ -546,10 +577,9 @@ const UpdateStyle = () => {
         <button
           onClick={handleUpdateHeroStyles}
           type="button"
-          className="bg-blue-500 text-white py-2 px-4 rounded text-center cursor-pointer"
+          className="bg-blue-500 active:opacity-20 transition duration-200 ease-linear text-white py-2 px-4 rounded text-center cursor-pointer"
         >
-          {" "}
-          Update{" "}
+          {loading.updatingHero ? "Updating..." : "Update"}
         </button>
       </section>
     </div>
