@@ -3,6 +3,7 @@ import heroImage from "@/assets/hero-image.png";
 import BarIcon from "./BarIcon";
 import { useAppStore } from "../store/AppStoreProvider";
 import cn from "../utils/clsx";
+import Animate from "./Animate";
 
 const Preview = () => {
   const { content, setContent } = useAppStore();
@@ -62,68 +63,78 @@ const Preview = () => {
       </nav>
       <div className=" flex flex-col md:flex-row min-h-[675px] mt-16 md:mt-0 z-10">
         <div className="flex-1 md:flex-1/2 flex flex-col justify-center items-center md:items-baseline  [&~*]:text-left pl-10 md:pl-40">
-          <h1
-            contentEditable
-            onBlur={(e) =>
-              setContent((prevContent) => ({
-                ...prevContent,
-                hero: {
-                  ...prevContent.hero,
-                  title: {
-                    ...prevContent.hero.title,
-                    text: e.target.innerText,
+          <Animate type={hero.title.animation.class}>
+            <h1
+              contentEditable
+              onBlur={(e) =>
+                setContent((prevContent) => ({
+                  ...prevContent,
+                  hero: {
+                    ...prevContent.hero,
+                    title: {
+                      ...prevContent.hero.title,
+                      text: e.target.innerText,
+                    },
                   },
-                },
-              }))
-            }
-            className={cn(
-              "max-w-sm line-clamp-2",
-              hero.title.classes.fontFamily,
-              hero.title.classes.fontSize,
-              hero.title.classes.fontWeight,
-              hero.title.animation.class
-            )}
-            style={{
-              color: hero.title.classes.fontColor,
-            }}
-          >
-            {hero?.title?.text}
-          </h1>
-          <p
-            className={cn(
-              "max-w-[511px]  mt-10 text-center md:text-left",
-              hero.subtitle.classes.fontFamily,
-              hero.subtitle.classes.fontSize,
-              hero.subtitle.classes.fontWeight,
-              hero.subtitle.animation.class
-            )}
-            style={{
-              color: hero.subtitle.classes.fontColor,
-            }}
-          >
-            {hero?.subtitle?.text}
-          </p>
-          <div className="mt-16">
-            <a
-              href={hero?.button?.href}
+                }))
+              }
               className={cn(
-                "min-w-[200px] rounded-full flex items-center justify-center text-white text-sm bg-amber-400 py-4 px-6",
-                hero.button.classes.fontFamily,
-                hero.button.classes.fontSize,
-                hero.button.classes.fontWeight,
-                hero.button.animation.class
+                "max-w-sm line-clamp-2",
+                hero.title.classes.fontFamily,
+                hero.title.classes.fontSize,
+                hero.title.classes.fontWeight,
+                hero.title.animation.class
               )}
               style={{
-                color: hero.button.classes.fontColor,
-                background: hero.button.classes.bgColor,
+                color: hero.title.classes.fontColor,
               }}
             >
-              {hero?.button?.title}
-            </a>
-          </div>
+              {hero?.title?.text}
+            </h1>
+          </Animate>
+
+          <Animate type={hero.subtitle.animation.class} delay={0.2}>
+            <p
+              className={cn(
+                "max-w-[511px]  mt-10 text-center md:text-left",
+                hero.subtitle.classes.fontFamily,
+                hero.subtitle.classes.fontSize,
+                hero.subtitle.classes.fontWeight,
+                hero.subtitle.animation.class
+              )}
+              style={{
+                color: hero.subtitle.classes.fontColor,
+              }}
+            >
+              {hero?.subtitle?.text}
+            </p>
+          </Animate>
+
+          <Animate type={hero.button.animation.class} delay={0.4}>
+            <div className="mt-16">
+              <a
+                href={hero?.button?.href}
+                className={cn(
+                  "min-w-[200px] rounded-full flex items-center justify-center text-white text-sm bg-amber-400 py-4 px-6",
+                  hero.button.classes.fontFamily,
+                  hero.button.classes.fontSize,
+                  hero.button.classes.fontWeight,
+                  hero.button.animation.class
+                )}
+                style={{
+                  color: hero.button.classes.fontColor,
+                  background: hero.button.classes.bgColor,
+                }}
+              >
+                {hero?.button?.title}
+              </a>
+            </div>
+          </Animate>
         </div>
         <div className="flex-1 md:flex-1/2 flex flex-col items-center justify-center">
-          <img src={heroImage} />
+          <Animate type={hero.image.animation.class}>
+            <img src={heroImage} />
+          </Animate>
         </div>
       </div>
     </div>
