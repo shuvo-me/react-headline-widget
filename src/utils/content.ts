@@ -5,17 +5,48 @@ export default {
   hero: {
     title: {
       text: "New card game",
-      class: "",
+      classes: {
+        fontFamily: "font-roboto",
+        fontSize: "text-4xl",
+        fontWeight: "font-bold",
+        fontColor: "#000000",
+      },
+      animation: {
+        class: "fade-in",
+      },
     },
-    subtitle: `We present you a new card game — First Hunter. It develops horizons and deep thinking. From the age of 8`,
+    subtitle: {
+      text: `We present you a new card game — First Hunter. It develops horizons and deep thinking. From the age of 8`,
+      classes: {
+        fontFamily: "font-roboto",
+        fontSize: "text-4xl",
+        fontWeight: "font-bold",
+        fontColor: "#000000",
+      },
+      animation: {
+        class: "fade-in",
+      },
+    },
     button: {
       title: "Get Stated",
       href: "#get-started",
-      class: "",
+      classes: {
+        fontFamily: "font-roboto",
+        fontSize: "text-sm",
+        fontWeight: "font-normal",
+        fontColor: "#000000",
+        bgColor: "#FFFFFF",
+      },
+      animation: {
+        class: "fade-in",
+      },
     },
     image: {
       src: heroImage,
       alt: "hero-image",
+      animation: {
+        class: "zoom-in",
+      },
     },
     bgGradient: {
       style: {
