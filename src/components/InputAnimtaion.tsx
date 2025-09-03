@@ -25,7 +25,7 @@ const InputAnimation: FC<InputAnimationProps> = ({
         className=" outline-0 border border-gray-400 rounded p-2 focus-within:border-blue-500"
       >
         <option value="fade-in">Fade In</option>
-        <option value="zoom-out">Zoom Out</option>
+        <option value="zoom-in">Zoom In</option>
       </select>
     </div>
   );

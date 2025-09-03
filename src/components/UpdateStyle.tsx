@@ -479,6 +479,28 @@ const UpdateStyle = () => {
           </div>
 
           <div className="space-y-4">
+            <h4 className=" font-semibold">Image</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+              <InputAnimation
+                value={heroStyles.image.animation.class}
+                id="header-image-animation"
+                label="Select image animation"
+                onChange={(e) => {
+                  setHeroStyles((prevStyles) => ({
+                    ...prevStyles,
+                    image: {
+                      ...prevStyles.image,
+                      animation: {
+                        class: e.target.value,
+                      },
+                    },
+                  }));
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4">
             <h4 className="font-semibold">Hero Gradient</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 md-grid-cols-3 lg:grid-cols-4 gap-8">
               <div className="flex items-center gap-1">

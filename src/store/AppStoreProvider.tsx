@@ -21,14 +21,12 @@ const AppStoreProvider: FC<PropsWithChildren> = ({ children }) => {
   const contentJsonFromLocalStorage = localStorage.getItem("contentData");
   const parsedJSON = JSON.parse(contentJsonFromLocalStorage as string);
 
-  console.log({ parsedJSON });
   const [content, setContent] = useState(() => {
     if (parsedJSON) return { ...parsedJSON };
     else return { ...data };
   });
 
   useEffect(() => {
-    console.log({ content });
     localStorage.setItem("contentData", JSON.stringify(content));
   }, [content]);
 
