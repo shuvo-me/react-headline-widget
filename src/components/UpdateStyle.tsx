@@ -478,22 +478,47 @@ const UpdateStyle = () => {
             </div>
           </div>
 
-          <Input
-            value={heroStyles.bgGradient.style.background}
-            type="text"
-            id="hero-bg-gradient-color"
-            label="Copy and paste any gradient value text"
-            onChange={(e) =>
-              setHeroStyles((prevStyles) => ({
-                ...prevStyles,
-                bgGradient: {
-                  style: {
-                    background: e.target.value,
-                  },
-                },
-              }))
-            }
-          />
+          <div className="space-y-4">
+            <h4 className="font-semibold">Hero Gradient</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md-grid-cols-3 lg:grid-cols-4 gap-8">
+              <div className="flex items-center gap-1">
+                <input
+                  type="checkbox"
+                  id="gradient-toggle"
+                  checked={heroStyles.bgGradient.show}
+                  onChange={(e) => {
+                    setHeroStyles((prevStyles) => ({
+                      ...prevStyles,
+                      bgGradient: {
+                        ...prevStyles.bgGradient,
+                        show: e.target.checked,
+                      },
+                    }));
+                  }}
+                />
+                <label htmlFor="gradient-toggle" className="text-sm">
+                  Show Hero Gradient
+                </label>
+              </div>
+
+              <Input
+                value={heroStyles.bgGradient.style.background}
+                type="text"
+                id="hero-bg-gradient-color"
+                label="Copy and paste any gradient value text"
+                onChange={(e) =>
+                  setHeroStyles((prevStyles) => ({
+                    ...prevStyles,
+                    bgGradient: {
+                      style: {
+                        background: e.target.value,
+                      },
+                    },
+                  }))
+                }
+              />
+            </div>
+          </div>
         </div>
         <button
           onClick={handleUpdateHeroStyles}

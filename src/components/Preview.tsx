@@ -10,12 +10,17 @@ const Preview = () => {
 
   return (
     <div className="bg-white flex flex-col relative overflow-hidden">
-      <div
-        className="h-[100rem] w-[54rem] md:w-[45rem]  lg:w-[64rem]  absolute inset-0 -rotate-45 translate-x-[-5rem] translate-y-[-11rem]"
-        style={{
-          ...content.hero.bgGradient.style,
-        }}
-      />
+      {hero.bgGradient.show ? (
+        <div
+          className="h-[100rem] w-[54rem] md:w-[45rem]  lg:w-[64rem]  absolute inset-0 -rotate-45 translate-x-[-5rem] translate-y-[-11rem]"
+          style={{
+            ...content.hero.bgGradient.style,
+          }}
+        />
+      ) : (
+        ""
+      )}
+
       <nav className="flex items-center justify-between px-1.5 py-2.5 z-10">
         <div>
           <img src={siteLogo} alt="site logo" />
